@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ThemeProvider } from "react-jss";
+import Header from "./components/header";
+import Navigation from "./components/navigation";
 
-function App() {
+const theme = {
+  background: "#000000",
+  color: "#ffffff",
+  navigationBackgroundColor: "#0d9ddb",
+};
+
+const App = () => {
+  const [show, setShow] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header show={show} setShow={setShow} />
+      <Navigation show={show} setShow={setShow} />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
