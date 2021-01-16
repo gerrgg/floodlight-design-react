@@ -1,0 +1,16 @@
+#menuButton {
+  width: 66px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  z-index: 10;
+
+  span.bar {
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-bottom: 3px solid $headerColor;
+    transform: skew(-45deg);
+  }
+}

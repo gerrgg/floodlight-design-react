@@ -1,0 +1,27 @@
+header#header {
+  position: relative;
+  padding: 15px;
+  background-color: $headerBackgroundColor;
+  color: $headerColor;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.5s;
+
+  @media #{$sm} {
+    flex-direction: column;
+
+    a {
+      padding-top: 1rem;
+      order: 2;
+      img {
+        width: 135px;
+        height: 20px;
+      }
+    }
+    button#menuButton {
+      order: 1;
+    }
+  }
+}

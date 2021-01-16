@@ -1,22 +1,17 @@
 import React, { useState } from "react";
-import { ThemeProvider } from "react-jss";
+import "normalize-css";
+import "./scss/_main.scss";
 import Header from "./components/header";
 import Navigation from "./components/navigation";
-
-const theme = {
-  background: "#000000",
-  color: "#ffffff",
-  navigationBackgroundColor: "#0d9ddb",
-};
 
 const App = () => {
   const [show, setShow] = useState(false);
 
   return (
-    <ThemeProvider theme={theme}>
+    <div className="container">
       <Header show={show} setShow={setShow} />
       <Navigation show={show} setShow={setShow} />
-    </ThemeProvider>
+    </div>
   );
 };
 

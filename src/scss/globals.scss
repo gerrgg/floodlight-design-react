@@ -1,0 +1,11 @@
+@import "variables";
+
+.container {
+  @media #{$sm} {
+    max-width: 430;
+  }
+  @media #{$md} {
+    max-width: 770;
+  }
+  margin: 0 auto;
+}
