@@ -11,11 +11,7 @@ const Navigation = ({ show }) => {
         zIndex: -1,
       };
 
-  return (
-    <nav id="navigation" style={style}>
-      <h1>im content</h1>
-    </nav>
-  );
+  return <nav id="navigation" style={style}></nav>;
 };
 
 export default Navigation;

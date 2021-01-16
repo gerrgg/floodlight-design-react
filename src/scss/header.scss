@@ -1,4 +1,5 @@
 header#header {
+  z-index: 10;
   position: relative;
   padding: 15px;
   background-color: $headerBackgroundColor;
@@ -9,11 +10,41 @@ header#header {
   align-items: center;
   transition: background-color 0.5s;
 
+  #menuButton {
+    height: 60px;
+    width: 66px;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    position: absolute;
+
+    span.bar {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 4px;
+      border-bottom: 3px solid $headerColor;
+      transform: skew(-45deg);
+      transition: top 0.5s;
+      top: 5px;
+      &.show {
+        top: 0px;
+      }
+      &:last-child {
+        top: 15px;
+        &.show {
+          top: 20px;
+        }
+      }
+    }
+  }
+
   @media #{$sm} {
     flex-direction: column;
 
-    a {
-      padding-top: 1rem;
+    a#logo {
+      margin-top: 4rem;
       order: 2;
       img {
         width: 135px;

@@ -9,3 +9,16 @@
   }
   margin: 0 auto;
 }
+
+.content {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+
+  &.home {
+    background-color: #000;
+    color: invert($color: #000000);
+  }
+}
