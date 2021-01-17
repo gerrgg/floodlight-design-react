@@ -4,7 +4,10 @@ import logo from "../logo.svg";
 import Headroom from "react-headroom";
 
 const Header = ({ show, setShow }) => (
-  <Headroom>
+  /**
+   * We disable InlineStyles to ensure the pinned header syncs up with the unpinned version.
+   */
+  <Headroom disableInlineStyles={true}>
     <header id="header">
       <Logo />
       <Menu show={show} setShow={setShow} />
@@ -18,7 +21,7 @@ const Menu = ({ show, setShow }) => {
       {Array(2)
         .fill("")
         .map((i) => (
-          <span className={`bar ${show ? "show" : null}`}></span>
+          <span className={`bar ${show ? "show" : ""}`}></span>
         ))}
     </button>
   );
