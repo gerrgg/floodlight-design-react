@@ -29,13 +29,13 @@ const Home = () => {
     <div className="content home" style={styles.root}>
       <Intro />
       <h2 style={styles.header}>Sliders</h2>
-      <p>Move left or right to display an infinate number of possibilites.</p>
+      <p>Move left or right to display an infinite number of possibilites.</p>
       <Slider>
         {Array(10)
           .fill("")
           .map((a, i) => (
             <img
-              key={i + Math.random(100)}
+              key={Math.random(1000)}
               src={`https://place-hold.it/150x100/fff/?text=${i}`}
               alt="placeholder img"
             />
@@ -49,17 +49,15 @@ const Intro = () => (
   <div className="intro">
     <div style={styles.section}>
       <h2 style={styles.header}>
-        WE ARE
+        I'M A
         <br />
         FRONTEND <br />
-        JAVASCRIPT
-        <br />
-        <span style={{ color: "#0d9ddb" }}> ENGINEERS</span> <br />
+        <span style={{ color: "#0d9ddb" }}> ENGINEER</span> <br />
       </h2>
     </div>
     <div style={styles.section}>
       <h4 style={styles.subheader}>
-        WE BUILD OUR OWN <br /> COMPONENTS
+        I BUILD MY OWN <br /> COMPONENTS
       </h4>
     </div>
   </div>

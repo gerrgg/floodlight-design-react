@@ -3,6 +3,8 @@
   left: 0;
   right: 0;
   z-index: 10;
+  display: flex;
+  justify-content: center;
 }
 .headroom--unfixed {
   position: relative;
@@ -24,12 +26,7 @@ header#header {
   padding: 15px;
   background-color: $headerBackgroundColor;
   color: $headerColor;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   transition: background-color 0.5s;
-  flex-direction: row;
 
   #menuButton {
     height: 60px;
@@ -62,6 +59,10 @@ header#header {
   }
 
   @media #{$sm} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     flex-direction: column;
 
     a#logo {

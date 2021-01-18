@@ -25,18 +25,24 @@ const Slider = ({ children }) => {
    * Get the combined width of all the items in the slider
    */
   useEffect(() => {
-    let innerWidth = 0;
+    /**
+     * We set a timeout to ensure the DOM loads by the time the effect runs
+     */
+    setTimeout(() => {
+      let width = 0;
 
-    if (ref) {
-      const items = ref.current.offsetParent.children;
-      for (let item of items) {
-        if (item.className === "item") {
-          innerWidth += item.clientWidth;
+      if (ref) {
+        const items = ref.current.offsetParent.children;
+        for (let item of items) {
+          if (item.className === "item") {
+            width += item.clientWidth;
+            console.log(width);
+          }
         }
       }
-    }
 
-    setInnerWidth(innerWidth);
+      setInnerWidth(width);
+    }, 50);
   }, [setInnerWidth]);
 
   /**
@@ -59,7 +65,7 @@ const Slider = ({ children }) => {
       {children.map((child, i) => {
         return (
           <div
-            key={i}
+            key={Math.random(1000)}
             ref={ref}
             className="item"
             style={{ transform: `translateX(${translateX}px)` }}

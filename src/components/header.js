@@ -22,7 +22,7 @@ const Menu = ({ show, setShow }) => {
         .fill("")
         .map((i) => (
           <span
-            key={i + Math.random(100)}
+            key={Math.random(1000)}
             className={`bar ${show ? "show" : ""}`}
           ></span>
         ))}
