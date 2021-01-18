@@ -1,13 +1,21 @@
 @import "variables";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 .container {
   @media #{$sm} {
-    max-width: 430;
+    max-width: 430px;
   }
   @media #{$md} {
-    max-width: 770;
+    max-width: 770px;
   }
-  margin: 0 auto;
 }
 
 .content {
@@ -15,6 +23,7 @@
   top: 0;
   width: 100%;
   padding-top: 100px;
+  padding: 100px 15px 15px 0px;
 
   &.home {
     background-color: #000;

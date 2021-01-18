@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSwipeable } from "react-swipeable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -7,19 +8,28 @@ import {
 
 const styles = {
   root: {
-    position: "relative",
-    overflow: "hidden",
-    display: "flex",
     margin: "0 auto",
-    alignItems: "center",
   },
 };
 
 const Slider = ({ children }) => {
-  const width = window.innerWidth;
+  // If window is bigger than container (900) then set to 900 else window width
+  const width = window.innerWidth > 900 ? 900 : window.innerWidth;
+
   const [translateX, setTranslateX] = useState(0);
   const [innerWidth, setInnerWidth] = useState(0);
+
   const ref = useRef(null);
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => {
+      console.log(eventData);
+      // swipes are inverted so we reverse them again - left === right
+      slide(eventData.dir.toLowerCase() === "left" ? "right" : "left");
+    },
+    trackTouch: true,
+    trackMouse: true,
+  });
 
   /**
    * Get the combined width of all the items in the slider
@@ -36,13 +46,12 @@ const Slider = ({ children }) => {
         for (let item of items) {
           if (item.className === "item") {
             width += item.clientWidth;
-            console.log(width);
           }
         }
       }
 
       setInnerWidth(width);
-    }, 50);
+    }, 500);
   }, [setInnerWidth]);
 
   /**
@@ -50,17 +59,21 @@ const Slider = ({ children }) => {
    * @param {string} direction
    */
   const slide = (direction) => {
+    // if the current x position + next move > the total width, set to 0
     if (Math.abs(translateX - width) > innerWidth) {
       setTranslateX(0);
     } else {
+      // if we're going left and x + move is greater than 0, put to end else move back
       direction === "left"
-        ? setTranslateX(translateX + width)
+        ? setTranslateX(
+            translateX + width > 0 ? -(innerWidth - width) : translateX + width
+          )
         : setTranslateX(translateX - width);
     }
   };
 
   return (
-    <div className="slider" style={styles.root}>
+    <div className="slider" style={styles.root} {...handlers}>
       <Nav slide={slide} />
       {children.map((child, i) => {
         return (

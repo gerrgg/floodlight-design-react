@@ -9,6 +9,8 @@
 .headroom--unfixed {
   position: relative;
   transform: translateY(0);
+  // stops header from shifting when switching classes
+  transform: translateX(2%);
 }
 .headroom--scrolled {
   transition: transform 200ms ease-in-out;
@@ -24,21 +26,23 @@
 header#header {
   z-index: 10;
   padding: 15px;
+  width: 100%;
   background-color: $headerBackgroundColor;
   color: $headerColor;
   transition: background-color 0.5s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   #menuButton {
     height: 60px;
-    width: 66px;
+    width: 75px;
     background-color: transparent;
     border: none;
     color: inherit;
     cursor: pointer;
-    position: absolute;
 
     span.bar {
-      position: absolute;
       display: block;
       width: 100%;
       height: 4px;
@@ -46,6 +50,7 @@ header#header {
       transform: skew(-45deg);
       transition: top 0.5s;
       top: 5px;
+      left: 0px;
       &.show {
         top: 0px;
       }
@@ -59,7 +64,6 @@ header#header {
   }
 
   @media #{$sm} {
-    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -73,8 +77,12 @@ header#header {
         height: 20px;
       }
     }
+    span.bar {
+      position: absolute;
+    }
     button#menuButton {
       order: 1;
+      position: absolute;
     }
   }
 }

@@ -11,16 +11,14 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container">
-        <Header show={show} setShow={setShow} />
-        <Navigation show={show} setShow={setShow} />
+      <Header show={show} setShow={setShow} />
+      <Navigation show={show} setShow={setShow} />
 
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </Router>
   );
 };
