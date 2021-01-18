@@ -28,11 +28,14 @@ const Home = () => {
   return (
     <div className="content home" style={styles.root}>
       <Intro />
+      <h2 style={styles.header}>Sliders</h2>
+      <p>Move left or right to display an infinate number of possibilites.</p>
       <Slider>
         {Array(10)
           .fill("")
           .map((a, i) => (
             <img
+              key={i + Math.random(100)}
               src={`https://place-hold.it/150x100/fff/?text=${i}`}
               alt="placeholder img"
             />
@@ -49,8 +52,9 @@ const Intro = () => (
         WE ARE
         <br />
         FRONTEND <br />
-        JAVASCRIPT <br />
-        ENGINEERS
+        JAVASCRIPT
+        <br />
+        <span style={{ color: "#0d9ddb" }}> ENGINEERS</span> <br />
       </h2>
     </div>
     <div style={styles.section}>

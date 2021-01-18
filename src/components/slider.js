@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -16,11 +16,42 @@ const styles = {
 };
 
 const Slider = ({ children }) => {
-  const width = window.getInnerWidth;
-
+  const width = window.innerWidth;
   const [translateX, setTranslateX] = useState(0);
+  const [innerWidth, setInnerWidth] = useState(0);
+  const ref = useRef(null);
 
-  const slide = (direction) => {};
+  /**
+   * Get the combined width of all the items in the slider
+   */
+  useEffect(() => {
+    let innerWidth = 0;
+
+    if (ref) {
+      const items = ref.current.offsetParent.children;
+      for (let item of items) {
+        if (item.className === "item") {
+          innerWidth += item.clientWidth;
+        }
+      }
+    }
+
+    setInnerWidth(innerWidth);
+  }, [setInnerWidth]);
+
+  /**
+   * Move the slider or weve hit our limit
+   * @param {string} direction
+   */
+  const slide = (direction) => {
+    if (Math.abs(translateX - width) > innerWidth) {
+      setTranslateX(0);
+    } else {
+      direction === "left"
+        ? setTranslateX(translateX + width)
+        : setTranslateX(translateX - width);
+    }
+  };
 
   return (
     <div className="slider" style={styles.root}>
@@ -29,8 +60,9 @@ const Slider = ({ children }) => {
         return (
           <div
             key={i}
+            ref={ref}
             className="item"
-            style={{ transform: `translateX(${translateX})` }}
+            style={{ transform: `translateX(${translateX}px)` }}
           >
             {child}
           </div>
@@ -40,15 +72,17 @@ const Slider = ({ children }) => {
   );
 };
 
-const Nav = ({ slide }) => (
-  <div className="nav">
-    <button>
-      <FontAwesomeIcon icon={faChevronLeft} onClick={() => slide("left")} />
-    </button>
-    <button>
-      <FontAwesomeIcon icon={faChevronRight} onClick={() => slide("right")} />
-    </button>
-  </div>
-);
+const Nav = ({ slide }) => {
+  return (
+    <div className="nav">
+      <button onClick={() => slide("left")}>
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+      <button onClick={() => slide("right")}>
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    </div>
+  );
+};
 
 export default Slider;

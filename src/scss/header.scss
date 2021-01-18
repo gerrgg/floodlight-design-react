@@ -29,6 +29,7 @@ header#header {
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.5s;
+  flex-direction: row;
 
   #menuButton {
     height: 60px;

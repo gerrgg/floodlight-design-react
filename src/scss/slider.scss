@@ -1,6 +1,7 @@
 .slider {
   overflow: hidden;
   display: flex;
+  padding: 1rem 0;
 
   .item {
     border-right: 1px solid #000;
@@ -18,6 +19,12 @@
       @include button;
       padding: 0.25rem;
       margin: 0 0.25rem;
+
+      svg {
+        font-size: 1.5rem;
+        // opacity: 0.25;
+        color: $navigationBackgroundColor;
+      }
     }
   }
 }
