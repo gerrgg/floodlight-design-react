@@ -81,13 +81,13 @@ const Intro = () => (
         I'M A
         <br />
         FRONTEND <br />
-        <Blue>ENGINEER</Blue> <br />
+        <Color color="green">ENGINEER</Color> <br />
       </h2>
     </div>
     <div style={styles.section}>
       <h4 style={styles.subheader}>
         I BUILD MY OWN <br /> COMPONENTS WITH
-        <br /> <Blue>REACT / SCSS</Blue>
+        <br /> <Color color="#0d9ddb">REACT / SCSS</Color>
       </h4>
     </div>
   </div>
@@ -95,7 +95,7 @@ const Intro = () => (
 
 const SliderSection = () => (
   <div id="slider-section" style={styles.component}>
-    <Blue>Click or swipe</Blue>
+    <Color color="#c700ff">Click or swipe</Color>
 
     <h2 style={styles.header}>Sliders</h2>
     <Qoute
@@ -103,7 +103,7 @@ const SliderSection = () => (
       author="Philip K. Dick"
     />
 
-    <Slider>
+    <Slider color="#c700ff">
       {Array(10)
         .fill("")
         .map((a, i) => (
@@ -117,13 +117,10 @@ const SliderSection = () => (
   </div>
 );
 
-const Blue = ({ children, underline }) => (
+const Color = ({ children, color }) => (
   <span
     style={{
-      color: "#0d9ddb",
-      borderBottom: underline ? "1px solid #0d9ddb" : "none",
-      paddingBottom: underline ? "2px" : "0px",
-      cursor: underline ? "pointer" : "0px",
+      color: color,
     }}
   >
     {children}

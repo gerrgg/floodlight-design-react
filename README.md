@@ -2,6 +2,6 @@
 
 - ~~slider~~
 - slideshows
-- dropdowns
+- ~~dropdowns~~
 - list filtering
 - pop-ups

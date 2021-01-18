@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-const Slider = ({ children }) => {
+const Slider = ({ children, color }) => {
   // If window is bigger than container (900) then set to 900 else window width
   const width = window.innerWidth > 900 ? 900 : window.innerWidth;
 
@@ -74,7 +74,7 @@ const Slider = ({ children }) => {
 
   return (
     <div className="slider" style={styles.root} {...handlers}>
-      <Nav slide={slide} />
+      <Nav slide={slide} color={color} />
       {children.map((child, i) => {
         return (
           <div
@@ -91,13 +91,13 @@ const Slider = ({ children }) => {
   );
 };
 
-const Nav = ({ slide }) => {
+const Nav = ({ slide, color }) => {
   return (
     <div className="nav">
-      <button onClick={() => slide("left")}>
+      <button onClick={() => slide("left")} style={{ color: color }}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <button onClick={() => slide("right")}>
+      <button onClick={() => slide("right")} style={{ color: color }}>
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
     </div>
