@@ -1,0 +1,46 @@
+.repository {
+  overflow: hidden;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 15px;
+
+  * {
+    white-space: nowrap;
+  }
+
+  header {
+    padding: 0.5rem;
+    background-color: #2c3033;
+    border: 1px solid #2c3033;
+
+    h5 {
+      display: flex;
+      justify-content: space-between;
+
+      a {
+        white-space: nowrap;
+
+        margin-left: 0.5rem;
+        border-bottom: 1px solid #fff;
+      }
+    }
+  }
+  .inner {
+    padding: 1rem;
+    background-color: #161e24;
+    border: 1px solid #2c3033;
+
+    .details {
+      p {
+        display: flex;
+        justify-content: space-between;
+        label {
+          font-weight: 900;
+        }
+      }
+    }
+    border-bottom: 1px dashed #fff;
+  }
+}

@@ -3,6 +3,7 @@ import Slider from "../components/slider";
 import Dropdown from "../components/Dropdown";
 import Color from "../components/Color";
 import Filter from "../components/Filter";
+import Repository from "../components/Repository";
 
 import axios from "axios";
 
@@ -28,7 +29,7 @@ const styles = {
     lineHeight: "25px",
   },
   description: {
-    margin: "1rem",
+    margin: "2rem",
   },
   component: {
     height: `${350 * 2}px`,
@@ -44,6 +45,7 @@ const Home = () => {
         <SliderSection />
         <DropdownSection />
         <FilterSection />
+        <AboutSection />
       </div>
     </div>
   );
@@ -69,14 +71,17 @@ const Intro = () => (
 );
 
 const SliderSection = () => {
+  const color = "rgb(238, 65, 195)";
+
   return (
     <div id="slider-section" style={styles.component}>
-      <Color color={"rgb(238, 65, 195)"}>Click or swipe</Color>
+      <Color color={color}>Click or swipe</Color>
 
       <h2 style={styles.header}>Sliders</h2>
       <Qoute
         qoute="Have no fear of perfection - you'll never reach it."
         author="Salvador Dali"
+        color={color}
       />
 
       <Slider color={"rgb(238, 65, 195)"}>
@@ -84,7 +89,7 @@ const SliderSection = () => {
           .fill("")
           .map((a, i) => (
             <img
-              key={Math.random(1000)}
+              key={i}
               src={`https://place-hold.it/150x100/fff/?text=${i}`}
               alt="placeholder img"
             />
@@ -98,12 +103,13 @@ const DropdownSection = () => {
   const [color, setColor] = useState("#ee4141");
 
   return (
-    <div id="dropdown-section" style={{ height: 500, marginTop: 250 }}>
+    <div id="dropdown-section" style={{ height: 500 }}>
       <Color color={color}>Pick and Choose</Color>
-      <h2 style={styles.header}>Dropdowns</h2>
+      <h2 style={{ ...styles.header }}>Dropdowns</h2>
       <Qoute
         qoute="I have not failed. I've just found 10,000 ways that won't work."
         author="Thomas A. Edison"
+        color={color}
       />
 
       <Dropdown color={color} setColor={setColor}>
@@ -141,12 +147,13 @@ const FilterSection = () => {
   }, []);
 
   return (
-    <div id="list-section" style={{ height: 500, margin: "250px 0" }}>
+    <div id="list-section" style={{ height: 500, marginTop: 250 }}>
       <Color color={color}>Search and Click</Color>
       <h2 style={styles.header}>FILTERING LISTS</h2>
       <Qoute
         qoute="Success is stumbling from failure to failure with no loss of enthusiasm."
         author="Winston S. Churchill"
+        color={color}
       />
       <Filter data={people} color="#ffc0e9" />
       <p>
@@ -161,10 +168,47 @@ const FilterSection = () => {
   );
 };
 
-const Qoute = ({ qoute, author }) => (
+const AboutSection = () => {
+  const color = "#00ff9f";
+  const [repository, setRepository] = useState(null);
+
+  const getRepository = async () => {
+    const baseURL = `https://api.github.com/repos/gerrgg/floodlight-design-react`;
+
+    const response = await axios.get(baseURL);
+
+    if (response.data) {
+      setRepository(response.data);
+    }
+  };
+
+  useEffect(() => {
+    getRepository();
+  }, []);
+
+  return (
+    <div id="list-section" style={{ height: 500, marginTop: 500 }}>
+      <Color color={color}>About this Project</Color>
+      <h2 style={styles.header}>USING API'S</h2>
+      <Qoute
+        qoute="Only those who dare to fail greatly can ever achieve greatly."
+        author="Robert F. Kennedy"
+        color={color}
+      />
+      <Repository color={color} repository={repository} />
+    </div>
+  );
+};
+
+const Qoute = ({ qoute, author, color }) => (
   <p style={styles.description}>
-    <span className="quote">{`"${qoute}" - `}</span>
-    <b className="author">{author}</b>
+    <span className="quote">{qoute}</span>
+    <Color color={color ? color : ""}>
+      <br />
+      <b className="author" style={{ opacity: 0.75, paddingTop: ".5rem" }}>
+        {`-  ${author}`}
+      </b>
+    </Color>
   </p>
 );
 
