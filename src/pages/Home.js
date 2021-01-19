@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "../components/slider";
 import Dropdown from "../components/Dropdown";
+import Color from "../components/Color";
+import Filter from "../components/Filter";
+
+import axios from "axios";
 
 const styles = {
   root: {
@@ -39,37 +43,8 @@ const Home = () => {
         <Intro />
         <SliderSection />
         <DropdownSection />
+        <FilterSection />
       </div>
-    </div>
-  );
-};
-
-const DropdownSection = () => {
-  const [color, setColor] = useState("red");
-
-  return (
-    <div id="slider-section" style={{ height: 500 }}>
-      <span style={{ color: color }}>Pick and choose</span>
-
-      <h2 style={styles.header}>Dropdowns</h2>
-      <Qoute
-        qoute="One drop of wine is enough to redden a whole glass of water."
-        author="Victor Hugo"
-      />
-
-      <Dropdown color={color} setColor={setColor}>
-        {[
-          "Black",
-          "Red",
-          "Green",
-          "Blue",
-          "Violet",
-          "Pink",
-          "Purple",
-          "Yellow",
-          "Orange",
-        ]}
-      </Dropdown>
     </div>
   );
 };
@@ -81,51 +56,116 @@ const Intro = () => (
         I'M A
         <br />
         FRONTEND <br />
-        <Color color="green">ENGINEER</Color> <br />
+        <Color color="#71f971">ENGINEER</Color> <br />
       </h2>
     </div>
     <div style={styles.section}>
       <h4 style={styles.subheader}>
-        I BUILD MY OWN <br /> COMPONENTS WITH
+        I BUILD <br /> COMPONENTS WITH
         <br /> <Color color="#0d9ddb">REACT / SCSS</Color>
       </h4>
     </div>
   </div>
 );
 
-const SliderSection = () => (
-  <div id="slider-section" style={styles.component}>
-    <Color color="#c700ff">Click or swipe</Color>
+const SliderSection = () => {
+  return (
+    <div id="slider-section" style={styles.component}>
+      <Color color={"rgb(238, 65, 195)"}>Click or swipe</Color>
 
-    <h2 style={styles.header}>Sliders</h2>
-    <Qoute
-      qoute="The problem with introspection is that it has no end."
-      author="Philip K. Dick"
-    />
+      <h2 style={styles.header}>Sliders</h2>
+      <Qoute
+        qoute="Have no fear of perfection - you'll never reach it."
+        author="Salvador Dali"
+      />
 
-    <Slider color="#c700ff">
-      {Array(10)
-        .fill("")
-        .map((a, i) => (
-          <img
-            key={Math.random(1000)}
-            src={`https://place-hold.it/150x100/fff/?text=${i}`}
-            alt="placeholder img"
-          />
-        ))}
-    </Slider>
-  </div>
-);
+      <Slider color={"rgb(238, 65, 195)"}>
+        {Array(10)
+          .fill("")
+          .map((a, i) => (
+            <img
+              key={Math.random(1000)}
+              src={`https://place-hold.it/150x100/fff/?text=${i}`}
+              alt="placeholder img"
+            />
+          ))}
+      </Slider>
+    </div>
+  );
+};
 
-const Color = ({ children, color }) => (
-  <span
-    style={{
-      color: color,
-    }}
-  >
-    {children}
-  </span>
-);
+const DropdownSection = () => {
+  const [color, setColor] = useState("#ee4141");
+
+  return (
+    <div id="slider-section" style={{ height: 500, marginTop: 250 }}>
+      <Color color={color}>Pick and Choose</Color>
+      <h2 style={styles.header}>Dropdowns</h2>
+      <Qoute
+        qoute="I have not failed. I've just found 10,000 ways that won't work."
+        author="Thomas A. Edison"
+      />
+
+      <Dropdown color={color} setColor={setColor}>
+        {[
+          "Black",
+          "Red",
+          "Green",
+          "Blue",
+          "Violet",
+          "Pink",
+          "Yellow",
+          "Orange",
+        ]}
+      </Dropdown>
+    </div>
+  );
+};
+
+const FilterSection = () => {
+  const color = "#ffc0e9";
+  const [people, setPeople] = useState([]);
+  const [search] = useState("");
+
+  const getPeople = async () => {
+    const baseURL =
+      search === ""
+        ? `http://swapi.dev/api/people/`
+        : `http://swapi.dev/api/people/?search=${search}`;
+
+    const response = await axios.get(baseURL);
+
+    if (response.data) {
+      setPeople(response.data.results);
+    }
+  };
+
+  console.log(people);
+
+  useEffect(() => {
+    getPeople();
+  }, []);
+
+  return (
+    <div id="filter-section" style={{ height: 500, margin: "250px 0" }}>
+      <Color color={color}>Search and Click</Color>
+      <h2 style={styles.header}>FILTERING LISTS</h2>
+      <Qoute
+        qoute="Success is stumbling from failure to failure with no loss of enthusiasm."
+        author="Winston S. Churchill"
+      />
+      <Filter needle={search} data={people} color="#ffc0e9" />
+      <p>
+        Thank you{" "}
+        <Color color={color}>
+          <a href="https://swapi.dev/documentation#intro" rel="nofollow">
+            Star Wars API
+          </a>
+        </Color>
+      </p>
+    </div>
+  );
+};
 
 const Qoute = ({ qoute, author }) => (
   <p style={styles.description}>

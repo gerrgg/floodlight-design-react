@@ -5,8 +5,20 @@
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  &:hover,
+  &:visited {
+    color: inherit;
+  }
+}
+
 body {
   overflow-x: hidden;
+}
+
+.button {
+  @include button;
 }
 
 .container {
