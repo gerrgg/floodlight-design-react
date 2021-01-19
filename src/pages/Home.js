@@ -125,13 +125,9 @@ const DropdownSection = () => {
 const FilterSection = () => {
   const color = "#ffc0e9";
   const [people, setPeople] = useState([]);
-  const [search] = useState("");
 
   const getPeople = async () => {
-    const baseURL =
-      search === ""
-        ? `http://swapi.dev/api/people/`
-        : `http://swapi.dev/api/people/?search=${search}`;
+    const baseURL = `https://swapi.dev/api/people/`;
 
     const response = await axios.get(baseURL);
 
@@ -154,7 +150,7 @@ const FilterSection = () => {
         qoute="Success is stumbling from failure to failure with no loss of enthusiasm."
         author="Winston S. Churchill"
       />
-      <Filter needle={search} data={people} color="#ffc0e9" />
+      <Filter data={people} color="#ffc0e9" />
       <p>
         Thank you{" "}
         <Color color={color}>
