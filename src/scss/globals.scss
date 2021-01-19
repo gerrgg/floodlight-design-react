@@ -22,11 +22,14 @@ body {
 }
 
 .container {
-  @media #{$sm} {
-    max-width: 430px;
-  }
+  max-width: 900px;
+  margin: 0 auto;
+
   @media #{$md} {
     max-width: 770px;
+  }
+  @media #{$sm} {
+    max-width: 430px;
   }
 }
 

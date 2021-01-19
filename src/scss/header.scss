@@ -10,7 +10,10 @@
   position: relative;
   transform: translateY(0);
   // stops header from shifting when switching classes
-  transform: translateX(2%);
+
+  @media #{$sm} {
+    transform: translateX(2%);
+  }
 }
 .headroom--scrolled {
   transition: transform 200ms ease-in-out;

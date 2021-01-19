@@ -7,7 +7,7 @@ const Filter = ({ data, color }) => {
     filter === "" ? data : data.filter((d) => d.name.includes(filter));
 
   return (
-    <div className="filter">
+    <div className="filter" style={{ maxWidth: 400 }}>
       <input
         type="text"
         onChange={(e) => setFilter(e.target.value)}
