@@ -98,7 +98,7 @@ const DropdownSection = () => {
   const [color, setColor] = useState("#ee4141");
 
   return (
-    <div id="slider-section" style={{ height: 500, marginTop: 250 }}>
+    <div id="dropdown-section" style={{ height: 500, marginTop: 250 }}>
       <Color color={color}>Pick and Choose</Color>
       <h2 style={styles.header}>Dropdowns</h2>
       <Qoute
@@ -141,7 +141,7 @@ const FilterSection = () => {
   }, []);
 
   return (
-    <div id="filter-section" style={{ height: 500, margin: "250px 0" }}>
+    <div id="list-section" style={{ height: 500, margin: "250px 0" }}>
       <Color color={color}>Search and Click</Color>
       <h2 style={styles.header}>FILTERING LISTS</h2>
       <Qoute
