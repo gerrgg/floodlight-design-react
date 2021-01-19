@@ -136,8 +136,6 @@ const FilterSection = () => {
     }
   };
 
-  console.log(people);
-
   useEffect(() => {
     getPeople();
   }, []);

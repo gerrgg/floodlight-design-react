@@ -8,7 +8,7 @@ const Header = ({ show, setShow }) => (
    * We disable InlineStyles to ensure the pinned header syncs up with the unpinned version.
    */
   <Headroom disableInlineStyles={true}>
-    <header id="header">
+    <header id="header" className="container">
       <Logo />
       <Menu show={show} setShow={setShow} />
     </header>
