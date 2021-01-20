@@ -14,9 +14,7 @@ const styles = {
   },
   section: {
     height: `${250 * 2}px`,
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
+    padding: `250px 0`,
   },
   header: {
     textTransform: "uppercase",
@@ -74,7 +72,7 @@ const SliderSection = () => {
   const color = "rgb(238, 65, 195)";
 
   return (
-    <div id="slider-section" style={styles.component}>
+    <div id="slider-section" style={styles.section}>
       <Color color={color}>Click or swipe</Color>
 
       <h2 style={styles.header}>Sliders</h2>
@@ -103,7 +101,7 @@ const DropdownSection = () => {
   const [color, setColor] = useState("#ee4141");
 
   return (
-    <div id="dropdown-section" style={{ height: 500 }}>
+    <div id="dropdown-section" style={styles.section}>
       <Color color={color}>Pick and Choose</Color>
       <h2 style={{ ...styles.header }}>Dropdowns</h2>
       <Qoute
@@ -147,7 +145,7 @@ const FilterSection = () => {
   }, []);
 
   return (
-    <div id="list-section" style={{ height: 500, marginTop: 250 }}>
+    <div id="list-section" style={styles.section}>
       <Color color={color}>Search and Click</Color>
       <h2 style={styles.header}>FILTERING LISTS</h2>
       <Qoute
@@ -187,7 +185,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <div id="list-section" style={{ height: 500, marginTop: 500 }}>
+    <div id="api-section" style={{ ...styles.section, marginTop: 500 }}>
       <Color color={color}>About this Project</Color>
       <h2 style={styles.header}>USING API'S</h2>
       <Qoute

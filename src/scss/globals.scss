@@ -1,4 +1,7 @@
 @import "variables";
+html {
+  background-color: #000;
+}
 
 * {
   margin: 0;
@@ -7,6 +10,7 @@
 
 a {
   text-decoration: none;
+  color: inherit;
   &:hover,
   &:visited {
     color: inherit;
@@ -15,6 +19,7 @@ a {
 
 body {
   overflow-x: hidden;
+  height: 100%;
 }
 
 .button {

@@ -11,7 +11,12 @@ const Navigation = ({ show, setShow }) => {
         zIndex: -1,
       };
 
-  const links = ["slider-section", "dropdown-section", "list-section"];
+  const links = [
+    "slider-section",
+    "dropdown-section",
+    "list-section",
+    "api-section",
+  ];
 
   return (
     <nav id="navigation" style={style}>

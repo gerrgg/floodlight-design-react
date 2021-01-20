@@ -45,7 +45,44 @@ const Repository = ({ color, repository }) => {
           "Loading"
         )}
       </div>
+      <Commits commits={commits} />
     </div>
+  );
+};
+
+const Commits = ({ commits }) => {
+  return (
+    <ul className="commits">
+      <h2 className="header">Commits</h2>
+      {commits.map((commit) => (
+        <li>
+          <div>
+            <a href={commit.html_url} className="message">
+              {commit.commit.message}
+            </a>
+            <a href={commit.author.html_url} className="author">
+              <img
+                src={commit.author.avatar_url}
+                alt="commit author avatar"
+                style={{ height: 32, width: 32 }}
+              />
+              <b>{commit.commit.author.name}</b>
+              <time>
+                {timeDifference(
+                  Date.now(),
+                  new Date(commit.commit.author.date).getTime()
+                )}
+              </time>
+            </a>
+          </div>
+          <div>
+            <a href={commit.html_url} className="button">
+              {commit.commit.tree.sha.substring(0, 7)}
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -67,10 +104,7 @@ const RepositoryHeader = ({ repository, color, commitCount }) => {
       </p>
       <p>
         <label>Commits:</label>{" "}
-        <a
-          href="https://github.com/gerrgg/floodlight-design-react/commits/main"
-          style={{ color }}
-        >
+        <a href="https://github.com/gerrgg/floodlight-design-react/commits/main">
           {commitCount}
         </a>
       </p>
@@ -100,11 +134,11 @@ function timeDifference(current, previous) {
   } else if (elapsed < msPerDay) {
     return Math.round(elapsed / msPerHour) + " hours ago";
   } else if (elapsed < msPerMonth) {
-    return "approximately " + Math.round(elapsed / msPerDay) + " days ago";
+    return "like " + Math.round(elapsed / msPerDay) + " days ago";
   } else if (elapsed < msPerYear) {
-    return "approximately " + Math.round(elapsed / msPerMonth) + " months ago";
+    return "like " + Math.round(elapsed / msPerMonth) + " months ago";
   } else {
-    return "approximately " + Math.round(elapsed / msPerYear) + " years ago";
+    return "like " + Math.round(elapsed / msPerYear) + " years ago";
   }
 }
 
